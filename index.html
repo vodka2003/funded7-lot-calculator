@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f5ef">
+  <meta name="description" content="エントリー価格、損切り価格、円の損失額からロットを計算。Funded7の26銘柄・JPY口座向け。">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="ロット計算">
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="stylesheet" href="./style.css">
+  <title>ロット計算 | JPY</title>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="wordmark"><img src="./icon.svg" width="32" height="32" alt="">LOT CALCULATOR</div>
+      <span class="account">JPY口座</span>
+    </header>
+    <section class="intro">
+      <p class="eyebrow">FUNDED7 · 26 SYMBOLS</p>
+      <h1>損失額から、<br>ロットを決める。</h1>
+      <p class="lead">価格と金額を入れるだけ。</p>
+    </section>
+    <form id="calculator" novalidate>
+      <label for="symbol">銘柄</label>
+      <div class="select-wrap"><select id="symbol" name="symbol" aria-describedby="symbol-help"></select></div>
+      <p class="field-help" id="symbol-help">ゴールド / 米ドル</p>
+      <div class="price-grid">
+        <div><label for="entry">エントリー価格</label><input id="entry" name="entry" type="text" inputmode="decimal" placeholder="例：2750.00" autocomplete="off" enterkeyhint="next" required></div>
+        <div><label for="stop">損切り価格</label><input id="stop" name="stop" type="text" inputmode="decimal" placeholder="例：2740.00" autocomplete="off" enterkeyhint="next" required></div>
+      </div>
+      <label for="risk">損切りしたい金額</label>
+      <div class="money-input"><input id="risk" name="risk" type="text" inputmode="decimal" placeholder="例：3,000" autocomplete="off" enterkeyhint="done" required><span>円</span></div>
+      <button class="calculate" id="submit" type="submit">ロットを計算 <span aria-hidden="true">↗</span></button>
+      <p class="error" id="error" role="alert" hidden></p>
+    </form>
+    <section class="result" id="result" aria-label="計算結果" aria-live="polite" hidden>
+      <div class="result-top"><span>計算ロット</span><span id="trade-summary"></span></div>
+      <div class="lot-number"><output id="lots">0.00</output><span>lot</span></div>
+      <div class="loss-row"><span>損切り時の想定損失</span><strong id="estimated-loss"></strong></div>
+      <p class="rounding" id="rounding">0.01ロット単位で切り捨て</p>
+      <p class="rate" id="rate-info"></p>
+    </section>
+    <footer>
+      <p>手数料・スワップ・約定滑りは含まない概算です。<br>換算レートはFunded7の提示レートと異なる場合があります。</p>
+      <a href="https://funded7.com/faq/contract-specifications/" target="_blank" rel="noopener noreferrer">Funded7の銘柄仕様 <span aria-hidden="true">↗</span></a>
+    </footer>
+    <noscript>この計算機を使うにはJavaScriptを有効にしてください。</noscript>
+  </main>
+</body>
+</html>
